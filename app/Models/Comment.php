@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['caption', 'image'];
+    protected $fillable = ['content'];
 
     public function user()
     {
@@ -14,10 +14,10 @@ class Comment extends Model
     }
 
     public function likes() {
-        return $this->hasMany(Like::class);
+        return $this->belongsTo(Like::class);
     }
 
     public function comments() {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Comment::class);
     }
 }
