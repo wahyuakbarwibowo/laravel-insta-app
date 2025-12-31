@@ -10,7 +10,7 @@ class FeedController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Feed', [
+        return Inertia::render('feed', [
             'posts' => Post::with('user')
                 ->withCount('likes')
                 ->latest()

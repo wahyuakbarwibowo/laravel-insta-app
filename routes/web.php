@@ -1,22 +1,20 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FeedController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
-Route::get('/', function () {
-    return Inertia::render('welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
-    ]);
-})->name('home');
+Route::middleware(['auth', ''])->group(function () {
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('/', [FeedController::class, 'index'])->name('feed');
 
     Route::post('/posts', [PostController::class, 'store']);
+    Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+
+    Route::post('/posts/{post}/like', [LikeController::class, 'store']);
+    Route::post('/posts/{post}/comment', [CommentController::class, 'store']);
 });
 
-require __DIR__.'/settings.php';
+require __DIR__ . '/settings.php';

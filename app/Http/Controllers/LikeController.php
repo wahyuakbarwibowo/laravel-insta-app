@@ -11,6 +11,7 @@ class LikeController extends Controller
     {
         $post->likes()->firstOrCreate([
             'user_id' => auth()->id(),
+            'post_id' => $post->id,
         ]);
 
         return back();
