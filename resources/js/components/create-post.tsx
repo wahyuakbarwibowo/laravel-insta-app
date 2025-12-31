@@ -13,6 +13,7 @@ export default function CreatePost() {
 
   return (
     <form onSubmit={submit} className="mb-4">
+      <label>Caption</label>
       <input
         type="text"
         placeholder="Caption"
@@ -20,6 +21,7 @@ export default function CreatePost() {
         onChange={(e) => setData('caption', e.target.value)}
       />
 
+      <label htmlFor="">file</label>
       <input
         type="file"
         onChange={(e) =>

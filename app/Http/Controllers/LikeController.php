@@ -7,7 +7,7 @@ use App\Models\Post;
 
 class LikeController extends Controller
 {
-    public function like(Post $post)
+    public function store(Post $post)
     {
         $post->likes()->firstOrCreate([
             'user_id' => auth()->id(),
