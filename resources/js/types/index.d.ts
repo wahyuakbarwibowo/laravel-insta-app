@@ -48,4 +48,10 @@ export interface Post {
     image: string;
     likes_count: number;
     user: User;
+    comments: Comments[];
+}
+
+export interface Comments {
+    id: number;
+    content: string;
 }

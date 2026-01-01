@@ -7,8 +7,10 @@ interface Props {
 }
 
 export default function Feed({ posts }: Props) {
-  const { post } = useForm()
-
+  const { post, data, setData } = useForm({
+    comment: ''
+  })
+  console.log(posts)
   return (
     <>
       <Head title="Feed" />
@@ -34,6 +36,17 @@ export default function Feed({ posts }: Props) {
               <button type="submit">
                 ❤️ {p.likes_count}
               </button>
+            </form>
+            {p.comments.length <= 0 ? '' : p.comments.map((c) => (
+              <p>{c.content}</p>
+            ))}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                post(`/posts/${p.id}/comment`)
+              }}>
+              <label htmlFor="comment">Beri komentar</label>
+              <input placeholder="Isi komentar" type="text" value={data.comment} onChange={e => setData('comment', e.target.value)} />
             </form>
           </div>
         ))}

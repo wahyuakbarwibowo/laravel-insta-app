@@ -13,6 +13,7 @@ class FeedController extends Controller
         return Inertia::render('feed', [
             'posts' => Post::with('user')
                 ->withCount('likes')
+                ->with('comments')
                 ->latest()
                 ->get()
         ]);
