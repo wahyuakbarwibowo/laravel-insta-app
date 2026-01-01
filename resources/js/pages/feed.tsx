@@ -1,6 +1,7 @@
 import { Head, useForm } from '@inertiajs/react'
 import { Post } from "@/types";
-import CreatePost from "../components/create-post";
+import CreatePost from "@/components/create-post";
+import LogoutButton from "@/components/ui/logout-button";
 
 interface Props {
   posts: Post[]
@@ -10,11 +11,12 @@ export default function Feed({ posts }: Props) {
   const { post, data, setData } = useForm({
     comment: ''
   })
-  console.log(posts)
+  
   return (
     <>
       <Head title="Feed" />
       <div className="max-w-xl mx-auto">
+        <LogoutButton />
         <CreatePost />
         {posts.map((p) => (
           <div key={p.id} className="border p-3 mb-4">
